@@ -1,8 +1,6 @@
 package org.launchcode.codingevents.models;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -24,13 +22,21 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
+    @NotNull (message = "Location is required.")
+    @NotBlank(message = "Location is required.")
+    private String location;
+
+    @AssertTrue(message = "Registration is required.")
+    private boolean registrationRequired;
+
     private EventType type;
-    public Event(String name, String description, String contactEmail, EventType type) {
+    public Event(String name, String description, String contactEmail, EventType type, String location) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
         this.type = type;
+        this.location = location;
 
     }
 
@@ -73,6 +79,22 @@ public class Event {
 
     public int getId() {
         return id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public boolean isRegistrationRequired() {
+        return registrationRequired;
+    }
+
+    public void setRegistrationRequired(boolean registrationRequired) {
+        this.registrationRequired = registrationRequired;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
