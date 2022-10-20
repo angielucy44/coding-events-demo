@@ -27,7 +27,7 @@ public class Event {
     private String location;
 
     @AssertTrue(message = "Registration is required.")
-    private boolean registrationRequired;
+    private boolean registrationRequired = true;
 
     private EventType type;
     public Event(String name, String description, String contactEmail, EventType type, String location) {
